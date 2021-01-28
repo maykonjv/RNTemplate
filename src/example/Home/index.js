@@ -22,17 +22,19 @@ export function HomeExampleScreen() {
                 <Box style={border}>
                     <H1 color='white'>Step One</H1>
                 </Box>
-                <Row color='pink'>
-                    <H3 color='#000'>
+                <Row color='pink' p={5}>
+                    <H3 color='#000' left full>
                         {'Edit  App.js  to change this screen and then come back to see your edits.'}
                     </H3>
+                    <H3 color='#000' right full>
+                        {'Edit  App.js'}
+                    </H3>
                 </Row>
-                <Center>
-                    <Row>
-                        <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
-                        <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('Teste')} title='Go' icon='home' />
-                    </Row>
-                </Center>
+                <Column>
+                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
+                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('ButtonsExample')} title='Buttons' />
+                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('FormsExample')} title='Forms' />
+                </Column>
             </Column>
         </Container>
     );

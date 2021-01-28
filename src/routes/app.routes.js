@@ -1,10 +1,8 @@
 import React from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import Home from '../example/Home';
 import SplashScreen from './../pages/Splash/index';
 import HomeScreen from './../pages/Home/index';
-import { ExampleScreen } from '../example/Home/index';
-import RoutesExample from '../example';
+import RoutesExample from './example.routes';
 
 const AppStack = createStackNavigator();
 
