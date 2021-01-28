@@ -3,14 +3,14 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { _margin, _padding, _radius } from './../../util/styles';
 
-export const Button = ({ full, color = '#0C71A3', onPress, iconLeft, iconRight, colorlabel = '#fff', fontsize = 16, title, stylelabel, style, w, h, m = 0, p = 10, r = 0, visible = true }) => (
+export const Button = ({ full, colorBg = '#0C71A3', onPress, iconLeft, iconRight, colorLabel = '#fff', fontSize = 16, title, styleLabel, style, w, h, m = 0, p = 10, r = 0, visible = true }) => (
   <View>
     {visible ?
       <TouchableOpacity
         style={[
           {
             flex: full ? 1 : null,
-            backgroundColor: color,
+            backgroundColor: colorBg,
             alignItems: 'center',
             justifyContent: 'center',
           },
@@ -26,8 +26,8 @@ export const Button = ({ full, color = '#0C71A3', onPress, iconLeft, iconRight, 
           {iconLeft ? (
             <Icon
               name={iconLeft}
-              size={fontsize * 1.3}
-              color={colorlabel}
+              size={fontSize * 1.3}
+              color={colorLabel}
             />
           ) : (
               <View />
@@ -36,11 +36,11 @@ export const Button = ({ full, color = '#0C71A3', onPress, iconLeft, iconRight, 
             <Text
               style={[
                 {
-                  color: colorlabel,
-                  fontSize: fontsize,
+                  color: colorLabel,
+                  fontSize: fontSize,
                   marginHorizontal: 5
                 },
-                stylelabel,
+                styleLabel,
               ]}>
               {title}
             </Text>
@@ -48,8 +48,8 @@ export const Button = ({ full, color = '#0C71A3', onPress, iconLeft, iconRight, 
           {iconRight ? (
             <Icon
               name={iconRight}
-              size={fontsize * 1.3}
-              color={colorlabel}
+              size={fontSize * 1.3}
+              color={colorLabel}
             />
           ) : (
               <View />

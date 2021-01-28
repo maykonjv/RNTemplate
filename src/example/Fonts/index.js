@@ -6,8 +6,8 @@ export default function FontsExampleScreen() {
     const navigation = useNavigation();
 
     return (
-        <Container color='#fff'>
-            <Header title='Fonts' goback color='#323232' navigation={navigation} />
+        <Container colorBg='#fff'>
+            <Header title='Fonts' goback colorBg='#323232' navigation={navigation} />
             <Body p={15}>
                 <H1 color='blue'>{'Text Font H1'}</H1>
                 <H2 color='red'>{'Text Font H2'}</H2>

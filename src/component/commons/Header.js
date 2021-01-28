@@ -2,18 +2,18 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const Header = ({ children, color, style, statusbar, goback, title, styleTitle, navigation }) => (
+export const Header = ({ children, colorBg, colorTitle = '#fff', style, statusbar, goback, title, styleTitle, navigation }) => (
   <View
     style={[
       {
-        backgroundColor: color ? color : '#fff',
+        backgroundColor: colorBg ? colorBg : '#fff',
         flexDirection: 'row',
       },
       style,
     ]}>
     <StatusBar
       backgroundColor={
-        statusbar ? statusbar : color
+        statusbar ? statusbar : colorBg
       }
     />
     <View style={{ width: 30, margin: 10 }}>
@@ -32,7 +32,7 @@ export const Header = ({ children, color, style, statusbar, goback, title, style
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text style={[{ color: '#fff', fontSize: 18 }, styleTitle]}>
+      <Text style={[{ color: colorTitle, fontSize: 18 }, styleTitle]}>
         {title}
       </Text>
     </View>

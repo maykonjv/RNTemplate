@@ -16,13 +16,13 @@ export function HomeExampleScreen() {
     }, []);
 
     return (
-        <Container color='yellow'>
-            <Header color="#242424" navigation={navigation} goback title="Dashboad" />
-            <Column color='red' p={[20]} m={[10, 10, 20, 30]} r={20}>
+        <Container colorBg='yellow'>
+            <Header colorBg="#242424" navigation={navigation} goback title="Dashboad" />
+            <Column colorBg='red' p={[20]} m={[10, 10, 20, 30]} r={20}>
                 <Box style={border}>
                     <H1 color='white'>Step One</H1>
                 </Box>
-                <Row color='pink' p={5}>
+                <Row colorBg='pink' p={5}>
                     <H3 color='#000' left full>
                         {'Edit  App.js  to change this screen and then come back to see your edits.'}
                     </H3>
