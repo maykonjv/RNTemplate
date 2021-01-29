@@ -3,13 +3,16 @@ import { TextInput, View, Text } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { _margin, _padding, _radius } from '../../util/styles'
 import { Gradient } from './Container'
+import { applyMask } from './../../util/formatter';
 
-export const InputBox = ({ id, label, description, colorBg, fontSize = 16, onChangeText, formState = [], placeholder, iconLeft, iconRight, value, editable, colorLabel = '#000', colorDescription = '#000', focus, horizontal, numeric, email, tel, required, full, style, w, h, m = 0, p = 0, r = 0, visible = true }) => {
+export const InputBox = ({ id, label, description, mask, maxLength, colorBg, fontSize = 16, onChangeText, formState = [], placeholder, iconLeft, iconRight, value, editable, colorLabel = '#000', colorDescription = '#000', focus, horizontal, numeric, email, tel, required, full, style, w, h, m = 0, p = 0, r = 0, visible = true }) => {
     const [form, setForm] = formState;
+    const [value_, setValue_] = useState(value)
 
-    function addField(value) {
+    function addField(_value) {
         const _list = form ? form : {};
-        _list[id] = value;
+        _list[id] = applyMask(mask, _value);
+        setValue_(applyMask(mask, _value));
         setForm({ ..._list, })
     }
 
@@ -38,9 +41,10 @@ export const InputBox = ({ id, label, description, colorBg, fontSize = 16, onCha
                             /> : <View />}
                         <TextInput
                             autoFocus={focus}
-                            defaultValue={value}
+                            defaultValue={value_}
                             editable={editable}
                             placeholder={placeholder}
+                            maxLength={maxLength || mask?.length}
                             onChangeText={(txt) => { onChangeText ? onChangeText(txt) : null; formState && id ? addField(txt) : null }}
                             style={{ flex: 1, fontSize: fontSize }}
                             keyboardType={numeric ? 'numeric' : email ? 'email-address' : tel ? 'phone-pad' : 'default'} />
