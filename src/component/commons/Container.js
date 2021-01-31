@@ -3,17 +3,14 @@ import { View, TouchableHighlight, ImageBackground, SafeAreaView, ScrollView, Te
 import LinearGradient from 'react-native-linear-gradient';
 import { _padding, _margin, _radius } from '../../util/styles';
 
-export const Container = ({ children, colorBg, horizontal, style, image, p, visible = true }) => (
+export const Container = ({ children, colorBg, isHorizontal, style, image, p, isVisible = true }) => (
   <SafeAreaView style={{ flex: 1 }}>
-    {visible ?
+    {isVisible ?
       image ? (
         <ImageBackground
+          resizeMode='cover'
           style={[
-            {
-              flex: 1,
-              resizeMode: 'contain',
-              justifyContent: 'center',
-            },
+            { flex: 1 },
             _padding(p),
             style]}
           source={{ uri: image }}>
@@ -22,7 +19,7 @@ export const Container = ({ children, colorBg, horizontal, style, image, p, visi
       ) : (
           <Gradient
             colorBg={colorBg}
-            horizontal={horizontal}
+            isHorizontal={isHorizontal}
             style={[{ flex: 1 },
             _padding(p),
               style]}>
@@ -32,7 +29,7 @@ export const Container = ({ children, colorBg, horizontal, style, image, p, visi
       null}
   </SafeAreaView>
 )
-export const Body = ({ children, full, image, colorBg, horizontal, style, w, h, m = 0, p = 0, r = 0, visible = true, scrollTo, listFieldBox }) => {
+export const Body = ({ children, isFull, isScrollOff, image, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true, scrollTo, listFieldBox }) => {
   const ref = useRef()
 
   useEffect(() => {
@@ -40,53 +37,58 @@ export const Body = ({ children, full, image, colorBg, horizontal, style, w, h, 
       ref.current.scrollTo({ x: 0, y: listFieldBox[scrollTo], animated: true })
   }, [scrollTo])
 
-  return (
-    <ScrollView ref={ref}>
-      {visible ?
-        <View>
-          {image ? (
-            <ImageBackground
-              style={[
-                {
-                  flex: full ? 1 : null,
-                  resizeMode: 'cover',
-                  justifyContent: 'center',
-                },
-                _padding(p),
-                _margin(m),
-                _radius(r),
-                { width: w ? w : null },
-                { height: h ? h : null },
-                style,
-              ]}
-              source={{ uri: image }}>
-              {children}
-            </ImageBackground>
-          ) : (
-              <Gradient
-                colorBg={colorBg}
-                horizontal={horizontal}
-                style={[
-                  {
-                    flex: full ? 1 : null,
-                    backgroundColor: colorBg,
-                  },
-                  _padding(p),
-                  _margin(m),
-                  _radius(r),
-                  { width: w ? w : null },
-                  { height: h ? h : null },
-                  style,
-                ]}>
-                {children}
-              </Gradient>
-            )}
-        </View>
-        : null}
-    </ScrollView>
-  )
+  const _body = isVisible ?
+    image ? (
+      <ImageBackground
+        style={[
+          {
+            flex: isFull ? 1 : null,
+            resizeMode: 'cover',
+            justifyContent: 'center',
+          },
+          _padding(p),
+          _margin(m),
+          _radius(r),
+          { width: w ? w : null },
+          { height: h ? h : null },
+          style,
+        ]}
+        source={{ uri: image }}>
+        {children}
+      </ImageBackground>
+    ) : (
+        <Gradient
+          colorBg={colorBg}
+          isHorizontal={isHorizontal}
+          style={[
+            {
+              flex: isFull ? 1 : null,
+            },
+            _padding(p),
+            _margin(m),
+            _radius(r),
+            { width: w ? w : null },
+            { height: h ? h : null },
+            style,
+          ]}>
+          {children}
+        </Gradient>
+      )
+    : null;
+  if (isScrollOff)
+    return (
+      <View style={{ flex: isFull ? 1 : null, }}>
+        { _body}
+      </View >
+    )
+  else
+    return (
+      <ScrollView ref={ref}>
+        {_body}
+      </ScrollView>
+    )
 }
-export const FieldBox = ({ id, addListFieldBox = [], children, full, colorBg, horizontal, style, w, h, m = 0, p = 0, r = 0, visible = true }) => {
+export const FieldBox = ({ id, addListFieldBox = [], children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => {
   const [listFieldBox, setListFieldBox] = addListFieldBox;
 
   function addField(y) {
@@ -97,15 +99,14 @@ export const FieldBox = ({ id, addListFieldBox = [], children, full, colorBg, ho
 
   return (
     <View onLayout={(e) => addListFieldBox ? addField(e.nativeEvent.layout.y) : null}>
-      {visible ?
+      {isVisible ?
         <Gradient
           colorBg={colorBg}
-          horizontal={horizontal}
+          isHorizontal={isHorizontal}
           style={[
             {
               flexDirection: 'row',
-              flex: full ? 1 : null,
-              backgroundColor: colorBg
+              flex: isFull ? 1 : null,
             },
             _padding(p),
             _margin(m),
@@ -119,9 +120,9 @@ export const FieldBox = ({ id, addListFieldBox = [], children, full, colorBg, ho
     </View>)
 }
 
-export const Card = ({ children, full, colorBg, onPress, colorOnPress, style, w, h, m = 0, p = 0, r = 0, visible = true }) => (
-  <View>
-    {visible ?
+export const Card = ({ children, isFull, colorBg, onPress, colorOnPress, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
+  <View style={{ flex: isFull ? 1 : null, }}>
+    {isVisible ?
       <View>
         {onPress ? (
           <TouchableHighlight
@@ -132,7 +133,7 @@ export const Card = ({ children, full, colorBg, onPress, colorOnPress, style, w,
             }
             style={[
               {
-                flex: full ? 1 : null,
+                flex: isFull ? 1 : null,
                 backgroundColor: colorBg,
               },
               _padding(p),
@@ -148,11 +149,10 @@ export const Card = ({ children, full, colorBg, onPress, colorOnPress, style, w,
         ) : (
             <Gradient
               colorBg={colorBg}
-              horizontal={horizontal}
+              isHorizontal={isHorizontal}
               style={[
                 {
-                  flex: full ? 1 : null,
-                  backgroundColor: colorBg,
+                  flex: isFull ? 1 : null,
                 },
                 _padding(p),
                 _margin(m),
@@ -168,17 +168,16 @@ export const Card = ({ children, full, colorBg, onPress, colorOnPress, style, w,
       : null}
   </View>
 )
-export const Row = ({ children, full, colorBg, horizontal, style, w, h, m = 0, p = 0, r = 0, visible = true }) => (
-  <View>
-    {visible ?
+export const Row = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
+  <View style={{ flex: isFull ? 1 : null, }}>
+    {isVisible ?
       <Gradient
         colorBg={colorBg}
-        horizontal={horizontal}
+        isHorizontal={isHorizontal}
         style={[
           {
             flexDirection: 'row',
-            flex: full ? 1 : null,
-            backgroundColor: colorBg
+            flex: isFull ? 1 : null,
           },
           _padding(p),
           _margin(m),
@@ -191,18 +190,17 @@ export const Row = ({ children, full, colorBg, horizontal, style, w, h, m = 0, p
       </Gradient> : null}
   </View>
 )
-export const Column = ({ children, full, colorBg, horizontal, style, w, h, m = 0, p = 0, r = 0, visible = true }) => (
-  <View>
-    {visible ?
+export const Column = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
+  <View style={{ flex: isFull ? 1 : null, }}>
+    {isVisible ?
       <Gradient
         colorBg={colorBg}
-        horizontal={horizontal}
+        isHorizontal={isHorizontal}
         style={
           [
             {
               flexDirection: 'column',
-              flex: full ? 1 : null,
-              backgroundColor: colorBg,
+              flex: isFull ? 1 : null,
             },
             _padding(p),
             _margin(m),
@@ -216,18 +214,17 @@ export const Column = ({ children, full, colorBg, horizontal, style, w, h, m = 0
       </Gradient> : null}
   </View>
 )
-export const Center = ({ children, full, colorBg, horizontal, style, w, h, m = 0, p = 0, r = 0, visible = true }) => (
-  <View>
-    {visible ?
+export const Center = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
+  <View style={{ flex: isFull ? 1 : null }}>
+    {isVisible ?
       <Gradient
         colorBg={colorBg}
-        horizontal={horizontal}
+        isHorizontal={isHorizontal}
         style={[
           {
-            flex: full ? 1 : null,
+            flex: isFull ? 1 : null,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: colorBg,
           },
           _padding(p),
           _margin(m),
@@ -240,15 +237,37 @@ export const Center = ({ children, full, colorBg, horizontal, style, w, h, m = 0
       </Gradient> : null}
   </View>
 )
-
-export const Gradient = ({ children, colorBg, style, horizontal }) => {
+export const Grid = ({ children, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => {
+  if (!isVisible) return;
+  return (
+    <Gradient
+      colorBg={colorBg}
+      isHorizontal={isHorizontal}
+      style={
+        [
+          {
+            flex: 1, flexDirection: 'row', flexWrap: 'wrap'
+          },
+          _padding(p),
+          _margin(m),
+          _radius(r),
+          { width: w ? w : null },
+          { height: h ? h : null },
+          style,
+        ]
+      }>
+      {children}
+    </Gradient>
+  )
+}
+export const Gradient = ({ children, colorBg, style, isHorizontal }) => {
   if (Array.isArray(colorBg) && colorBg.length == 1) {
     colorBg = colorBg[0]
   }
   if (Array.isArray(colorBg))
     return (
       <LinearGradient
-        start={{ x: 0, y: 0 }} end={{ x: horizontal ? 1 : 0, y: !horizontal ? 1 : 0 }}
+        start={{ x: 0, y: 0 }} end={{ x: isHorizontal ? 1 : 0, y: !isHorizontal ? 1 : 0 }}
         colors={colorBg}
         style={style}>
         {children}
@@ -256,7 +275,7 @@ export const Gradient = ({ children, colorBg, style, horizontal }) => {
     );
 
   return (
-    <View style={[{ backgroundColor: colorBg, }, style]}>
+    <View style={[{ backgroundColor: colorBg }, style]}>
       {children}
     </View>
   )

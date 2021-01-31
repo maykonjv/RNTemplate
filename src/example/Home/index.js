@@ -1,41 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { Column, Container, H1, H3, Header, Row, Center } from '../../component/commons';
-import Box from '../../component/Box';
-import { Button } from '../../component/commons/Button';
+import * as RN from '../../component/commons';
+import tokens from '../../themes/tokens';
 
 export function HomeExampleScreen() {
     const navigation = useNavigation();
-    const [border, setBorder] = useState("border-width: 1px;");
-
-    useEffect(() => {
-        setTimeout(() => {
-            setBorder('border-width: 4px;')
-        }, 5000);
-
-    }, []);
 
     return (
-        <Container colorBg='yellow'>
-            <Header colorBg="#242424" navigation={navigation} goback title="Dashboad" />
-            <Column colorBg='red' p={[20]} m={[10, 10, 20, 30]} r={20}>
-                <Box style={border}>
-                    <H1 color='white'>Step One</H1>
-                </Box>
-                <Row colorBg='pink' p={5}>
-                    <H3 color='#000' left full>
-                        {'Edit  App.js  to change this screen and then come back to see your edits.'}
-                    </H3>
-                    <H3 color='#000' right full>
-                        {'Edit  App.js'}
-                    </H3>
-                </Row>
-                <Column>
-                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
-                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('ButtonsExample')} title='Buttons' />
-                    <Button m={10} p={[30, 10]} r={20} onPress={() => navigation.navigate('FormsExample')} title='Forms' />
-                </Column>
-            </Column>
-        </Container>
+        <RN.Container colorBg={tokens.colors.brand01[50]}>
+            <RN.Header colorBg={tokens.colors.brand01[900]} title="Dashboad" />
+            <RN.Body>
+                <RN.Column colorBg={tokens.colors.brand01[700]} p={[20]} m={[10, 10, 20, 30]} r={20}>
+                    <RN.Center colorBg={tokens.colors.brand01[800]} m={[0, 10]} p={10}>
+                        <RN.H1 color={tokens.colors.white}>CENTER</RN.H1>
+                    </RN.Center>
+                    <RN.Row colorBg={tokens.colors.brand01[400]} p={5} r={[0, 20, 10, 0]} h={100}>
+                        <RN.H3 color={tokens.colors.white} left isFull>
+                            {'element 1 left'}
+                        </RN.H3>
+                        <RN.H3 color={tokens.colors.white} right isFull>
+                            {'element 2 right'}
+                        </RN.H3>
+                    </RN.Row>
+                    <RN.Grid>
+                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
+                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('ButtonsExample')} title='Buttons' />
+                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('FormsExample')} title='Forms' />
+                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('ImageExample')} title='Images' />
+                    </RN.Grid>
+                </RN.Column>
+            </RN.Body>
+        </RN.Container>
     );
 }

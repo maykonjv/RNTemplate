@@ -1,0 +1,92 @@
+{
+	// 
+	// Snippets for VSCode
+	// Install:
+	// In vscode -> File -> Preferences -> User Snippets 
+	// select "Javascript" and paste this content.
+	// 
+
+	"Print to console": {
+		"prefix": "rnlog",
+		"body": [
+			"console.log('----->', '$1');"
+		]
+	},
+	"const navigation = useNavigation();": {
+		"prefix": "rnnav",
+		"body": [
+			"const navigation = useNavigation();"
+		]
+	},
+	"const [$1, set$1] = useState();": {
+		"prefix": "rns",
+		"body": "const [${1}, set${1/(.*)/${1:/capitalize}/}] = React.useState($2);"
+	},
+	"useEffect(() => {": {
+		"prefix": "rne",
+		"body": [
+			"React.useEffect(() => {\n\t$1 \n}, [$2]);"
+		]
+	},
+	"async useEffect(() => {": {
+		"prefix": "rnea",
+		"body": [
+			"React.useEffect(() => {\n\tasync function exec() {\n\t\tawait $1\n\t}\n\texec(); \n}, [$2]);"
+		]
+	},
+	"exportNamedFunction": {
+		"prefix": "rnc",
+		"body": [
+			"import React from 'react'",
+			"import { View, Text } from 'react-native'",
+			"",
+			"export const ${1:${TM_FILENAME_BASE}} = ({ children, $2 }) => {",
+			"\treturn (",
+			"\t\t<View>",
+			"\t\t\t<Text>$0</Text>",
+			"\t\t</View>",
+			"\t)",
+			"}",
+			""
+		]
+	},
+	"create function screen": {
+		"prefix": "rnf",
+		"body": [
+			"import React from 'react'",
+			"import { View, Text } from 'react-native'",
+			"",
+			"export default function ${1:${TM_FILENAME_BASE}}() {",
+			"\treturn (",
+			"\t\t<View>",
+			"\t\t\t<Text>$0</Text>",
+			"\t\t</View>",
+			"\t)",
+			"}",
+			""
+		]
+	},
+	"create screen by Template": {
+		"prefix": "rnft",
+		"body": [
+			"import React from 'react'",
+			"import { useNavigation } from '@react-navigation/native';",
+			"",
+			"import  * as RN from '../../component/commons';",
+			"",
+			"export default function ${1:${TM_FILENAME_BASE}}() {",
+			"\tconst navigation = useNavigation();",
+			"",
+			"\treturn (",
+			"\t\t<RN.Container colorBg='#fff'>",
+			"\t\t\t<RN.Header title='$Example' goback colorBg='#323232' navigation={navigation} />",
+			"\t\t\t<RN.Body>",
+			"\t\t\t\t<RN.H2>$0</RN.H2>",
+			"\t\t\t</RN.Body>",
+			"\t\t</RN.Container>",
+			"\t)",
+			"}",
+			""
+		]
+	}
+}

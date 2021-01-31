@@ -5,12 +5,13 @@ import styled from 'styled-components'
 
 const StyledBoxDefault = styled.View`
   background-color: papayawhip;
-  margin: 10px;
+  padding: 10px;
  
   `
 
 const StyledBox = styled(StyledBoxDefault)`
-  background-color: green;
+  background-color: #2E9AFE;
+  border-color: #81BEF7;
   ${props => props.style}
 `
 

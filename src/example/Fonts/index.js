@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Body, Container, Header, H1, H2, H3, H4, H5, H6, FieldBox } from './../../component/commons/';
 import { useNavigation } from '@react-navigation/native';
+import tokens from '../../themes/tokens';
 
 export default function FontsExampleScreen() {
     const navigation = useNavigation();
 
     return (
-        <Container colorBg='#fff'>
-            <Header title='Fonts' goback colorBg='#323232' navigation={navigation} />
+        <Container colorBg={tokens.colors.brand01[50]}>
+            <Header title='Fonts' goback colorBg={tokens.colors.brand01[900]} navigation={navigation} />
             <Body p={15}>
                 <H1 color='blue'>{'Text Font H1'}</H1>
                 <H2 color='red'>{'Text Font H2'}</H2>
