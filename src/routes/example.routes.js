@@ -5,19 +5,20 @@ import FontsExampleScreen from '../example/Fonts';
 import ButtonsExampleScreen from '../example/Buttons';
 import FormsExampleScreen from '../example/Forms';
 import ImageExampleScreen from '../example/Image/index';
+import RouteTab from './example.tab.routes';
 
 
 const AppStack = createStackNavigator();
 
 const RoutesExample = () => (
     <AppStack.Navigator
-        initialRouteName='HomeExample'
+        initialRouteName='Tab'
         screenOptions={{
             gestureDirection: 'horizontal',
             ...TransitionPresets.SlideFromRightIOS,
         }}
         headerMode="none">
-        <AppStack.Screen name="HomeExample" component={HomeExampleScreen} />
+        <AppStack.Screen name="Tab" component={RouteTab} />
         <AppStack.Screen name="FontsExample" component={FontsExampleScreen} />
         <AppStack.Screen name="ButtonsExample" component={ButtonsExampleScreen} />
         <AppStack.Screen name="FormsExample" component={FormsExampleScreen} />

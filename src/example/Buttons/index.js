@@ -39,7 +39,7 @@ export default function ButtonsExampleScreen() {
                     <Button m={[5, 10, 10, 10]} r={30} iconLeft='bell' colorBg={colors.brand03[100]} title='Brand03' onPress={() => setBrand(colors.brand03)} />
                 </Row>
                 <Button m={10} isDisabled title='Disabled' />
-                <Button m={20} colorBg={brand[100]} title='with Margin' />
+                <Button m={20} colorBg={brand[100]} title='with Margin' onPress={()=> navigation.navigate('Home Example', {teste: '123'})}/>
                 <Button m={10} p={20} colorBg={brand[200]} title='with Padding' />
                 <Button m={10} iconLeft='home' colorBg={brand[300]} title='with Icon' />
                 <Button m={10} r={10} iconLeft='home' colorBg={brand[400]} title='with Radius' />

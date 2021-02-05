@@ -1,11 +1,11 @@
 import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as RN from '../../component/commons';
 import tokens from '../../themes/tokens';
 
 export function HomeExampleScreen() {
     const navigation = useNavigation();
-
+    const route = useRoute();
     return (
         <RN.Container colorBg={tokens.colors.brand01[50]}>
             <RN.Header colorBg={tokens.colors.brand01[900]} title="Dashboad" />
@@ -13,6 +13,7 @@ export function HomeExampleScreen() {
                 <RN.Column colorBg={tokens.colors.brand01[700]} p={[20]} m={[10, 10, 20, 30]} r={20}>
                     <RN.Center colorBg={tokens.colors.brand01[800]} m={[0, 10]} p={10}>
                         <RN.H1 color={tokens.colors.white}>CENTER</RN.H1>
+                        <RN.H4 color={tokens.colors.white}>{route ? route?.params?.teste : null}</RN.H4>
                     </RN.Center>
                     <RN.Row colorBg={tokens.colors.brand01[400]} p={5} r={[0, 20, 10, 0]} h={100}>
                         <RN.H3 color={tokens.colors.white} left isFull>

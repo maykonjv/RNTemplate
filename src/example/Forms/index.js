@@ -3,8 +3,7 @@ import { Body, Container, Header, H3, FieldBox } from './../../component/commons
 import { useNavigation } from '@react-navigation/native';
 import { Button } from './../../component/commons/Button';
 import { InputBox } from './../../component/commons/Forms';
-import { Column, Gradient, Row } from '../../component/commons/Container';
-import { Center } from './../../component/commons/Container';
+import { Column, Row } from '../../component/commons/Container';
 import tokens from '../../themes/tokens';
 
 export default function FormsExampleScreen() {
