@@ -168,28 +168,28 @@ export const Card = ({ children, isFull, colorBg, onPress, colorOnPress, style, 
       : null}
   </View>
 )
-export const Row = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
-  <View style={{ flex: isFull ? 1 : null, }}>
-    {isVisible ?
-      <Gradient
-        colorBg={colorBg}
-        isHorizontal={isHorizontal}
-        style={[
-          {
-            flexDirection: 'row',
-            flex: isFull ? 1 : null,
-          },
-          _padding(p),
-          _margin(m),
-          _radius(r),
-          { width: w ? w : null },
-          { height: h ? h : null },
-          style,
-        ]}>
-        {children}
-      </Gradient> : null}
-  </View>
-)
+export const Row = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => {
+  if (!isVisible) return;
+  return (
+    <Gradient
+      colorBg={colorBg}
+      isHorizontal={isHorizontal}
+      style={[
+        {
+          flexDirection: 'row',
+          flex: isFull ? 1 : null,
+        },
+        _padding(p),
+        _margin(m),
+        _radius(r),
+        { width: w ? w : null },
+        { height: h ? h : null },
+        style,
+      ]}>
+      {children}
+    </Gradient>
+  )
+}
 export const Column = ({ children, isFull, colorBg, isHorizontal, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
   <View style={{ flex: isFull ? 1 : null, }}>
     {isVisible ?
