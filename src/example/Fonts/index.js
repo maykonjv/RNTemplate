@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Body, Container, Header, H1, H2, H3, H4, H5, H6, FieldBox } from './../../component/commons/';
 import { useNavigation } from '@react-navigation/native';
-import tokens from '../../themes/tokens';
+import { tokens } from '../../themes/tokens';
 
 export default function FontsExampleScreen() {
     const navigation = useNavigation();

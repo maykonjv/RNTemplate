@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as RN from '../../component/commons';
-import tokens from '../../themes/tokens';
+import { tokens } from '../../themes/tokens';
 
 export function HomeExampleScreen() {
     const navigation = useNavigation();
@@ -24,10 +24,10 @@ export function HomeExampleScreen() {
                         </RN.H3>
                     </RN.Row>
                     <RN.Grid>
-                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
-                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('ButtonsExample')} title='Buttons' />
-                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('FormsExample')} title='Forms' />
-                        <RN.Button m={5} r={20} w={'30%'} onPress={() => navigation.navigate('ImageExample')} title='Images' />
+                        <RN.Button m={5} r={20} w={'45%'} onPress={() => navigation.navigate('FontsExample')} title='Fonts' />
+                        <RN.Button m={5} r={20} w={'45%'} onPress={() => navigation.navigate('ButtonsExample')} title='Buttons' />
+                        <RN.Button m={5} r={20} w={'45%'} onPress={() => navigation.navigate('FormsExample')} title='Forms' />
+                        <RN.Button m={5} r={20} w={'45%'} onPress={() => navigation.navigate('ImageExample')} title='Images' />
                     </RN.Grid>
                 </RN.Column>
             </RN.Body>

@@ -119,7 +119,6 @@ export const FieldBox = ({ id, addListFieldBox = [], children, isFull, colorBg, 
         </Gradient> : null}
     </View>)
 }
-
 export const Card = ({ children, isFull, colorBg, onPress, colorOnPress, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => (
   <View style={{ flex: isFull ? 1 : null, }}>
     {isVisible ?

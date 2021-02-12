@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TextInput, View, Text } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { _margin, _padding, _radius } from '../../util/styles'
-import { Gradient } from './Container'
+import { Gradient } from './Layout'
 import { applyMask } from './../../util/formatter';
 
 export const InputBox = ({ id, label, description, mask, maxLength, colorBg, fontSize = 16, onChangeText, formState = [], placeholder, iconLeft, iconRight, value, isEditable, colorLabel = '#000', colorDescription = '#000', focus, isHorizontal, numeric, email, tel, required, isFull, style, w, h, m = 0, p = 0, r = 0, isVisible = true }) => {

@@ -9,32 +9,32 @@
 	"Print to console": {
 		"prefix": "rnlog",
 		"body": [
-			"console.log('----->', '$1');"
+			"console.log('----->', $1);"
 		]
 	},
 	"const navigation = useNavigation();": {
-		"prefix": "rnnav",
+		"prefix": "rnav",
 		"body": [
 			"const navigation = useNavigation();"
 		]
 	},
 	"const [$1, set$1] = useState();": {
-		"prefix": "rns",
+		"prefix": "rs",
 		"body": "const [${1}, set${1/(.*)/${1:/capitalize}/}] = React.useState($2);"
 	},
 	"useEffect(() => {": {
-		"prefix": "rne",
+		"prefix": "re",
 		"body": [
 			"React.useEffect(() => {\n\t$1 \n}, [$2]);"
 		]
 	},
 	"async useEffect(() => {": {
-		"prefix": "rnea",
+		"prefix": "rea",
 		"body": [
 			"React.useEffect(() => {\n\tasync function exec() {\n\t\tawait $1\n\t}\n\texec(); \n}, [$2]);"
 		]
 	},
-	"exportNamedFunction": {
+	"exportNamedFunctionRN": {
 		"prefix": "rnc",
 		"body": [
 			"import React from 'react'",
@@ -50,7 +50,22 @@
 			""
 		]
 	},
-	"create function screen": {
+	"exportNamedFunctionR": {
+		"prefix": "rc",
+		"body": [
+			"import React from 'react'",
+			"",
+			"export const ${1:${TM_FILENAME_BASE}} = ({ children, $2 }) => {",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t<h1>$0</h1>",
+			"\t\t</div>",
+			"\t)",
+			"}",
+			""
+		]
+	},
+	"create function screen RN": {
 		"prefix": "rnf",
 		"body": [
 			"import React from 'react'",
@@ -61,6 +76,21 @@
 			"\t\t<View>",
 			"\t\t\t<Text>$0</Text>",
 			"\t\t</View>",
+			"\t)",
+			"}",
+			""
+		]
+	},
+	"create function screen R": {
+		"prefix": "rf",
+		"body": [
+			"import React from 'react'",
+			"",
+			"export default function ${1:${TM_FILENAME_BASE}}() {",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t<h1>$0</h1>",
+			"\t\t</div>",
 			"\t)",
 			"}",
 			""

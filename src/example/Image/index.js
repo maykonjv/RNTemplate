@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 import * as RN from '../../component/commons';
-import tokens from '../../themes/tokens';
+import { tokens } from '../../themes/tokens';
 
 export default function ImageExampleScreen() {
     const navigation = useNavigation();
