@@ -98,7 +98,7 @@ export const FieldBox = ({ id, addListFieldBox = [], children, isFull, colorBg, 
   }
 
   return (
-    <View onLayout={(e) => addListFieldBox ? addField(e.nativeEvent.layout.y) : null}>
+    <View onLayout={(e) => addListFieldBox && setListFieldBox ? addField(e.nativeEvent.layout.y) : null}>
       {isVisible ?
         <Gradient
           colorBg={colorBg}

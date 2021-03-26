@@ -6,6 +6,7 @@ import ButtonsExampleScreen from '../example/Buttons';
 import FormsExampleScreen from '../example/Forms';
 import ImageExampleScreen from '../example/Image/index';
 import RouteTab from './example.tab.routes';
+import LoginScreen from '../example/Login';
 
 
 const AppStack = createStackNavigator();
@@ -19,6 +20,7 @@ const RoutesExample = () => (
         }}
         headerMode="none">
         <AppStack.Screen name="Tab" component={RouteTab} />
+        <AppStack.Screen name="Login" component={LoginScreen} />
         <AppStack.Screen name="FontsExample" component={FontsExampleScreen} />
         <AppStack.Screen name="ButtonsExample" component={ButtonsExampleScreen} />
         <AppStack.Screen name="FormsExample" component={FormsExampleScreen} />
